@@ -2,17 +2,23 @@ import {
   lengthFactory,
   stringFactory
 } from './strings'
+import {
+  requiredFactory
+} from './required'
 
 class validator {
   constructor() {
-    this.error = ''
     this.chain = []
   }
 
-  hasError() {
-    if (this.error) {
-      return true
-    } else return false
+  get() {
+    return value => {
+      if (!this.chain.length) {
+        return true
+      } else {
+        return validationTester(value, this.chain)
+      }
+    }
   }
 
   string(errorMessage) {
@@ -22,17 +28,24 @@ class validator {
 
   length(length, errorMessage) {
     this.chain.push(lengthFactory(length, errorMessage))
+    return this
   }
 
-  get() {
-    return value => {
-      if (!this.chain.length) {
-        return true
-      } else {
-        return this.chain[0](value)
-      }
+  required(errorMessage) {
+    this.chain.push(requiredFactory(errorMessage))
+    return this
+  }
+}
+
+const validationTester = (value, chain) => {
+  let error = true
+  for (let i = 0; i < chain.length; i++) {
+    error = chain[i](value)
+    if (error !== true) {
+      break
     }
   }
+  return error
 }
 
 export const vv = () => new validator()

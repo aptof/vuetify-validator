@@ -4,7 +4,7 @@ export const lengthFactory = (length, errorMessage) => {
   }
   return value => {
     if (typeof value === 'string') {
-      return value.length == length || errorMessage
+      return value.trim().length == length || errorMessage
     } else {
       throw 'Invalid argument'
     }
