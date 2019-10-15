@@ -1,0 +1,29 @@
+{
+  "name": "vuetify-validator",
+  "version": "0.0.1",
+  "description": "A validation library for Vuetify",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aptof/vuetify-validator.git"
+  },
+  "keywords": [
+    "Vuetify",
+    "Validator",
+    "Form",
+    "Validation"
+  ],
+  "author": "aptof",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aptof/vuetify-validator/issues"
+  },
+  "homepage": "https://github.com/aptof/vuetify-validator#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "dependencies": {}
+}
