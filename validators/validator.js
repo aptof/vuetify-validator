@@ -1,24 +1,38 @@
-import {length} from './strings'
+import {
+  length,
+  str
+} from './strings'
 
 class validator {
-  constructor(){
+  constructor() {
     this.error = ''
     this.chain = []
   }
-  
+
   hasError() {
-    if(this.error){
+    if (this.error) {
       return true
     } else return false
   }
 
-  get(){
+  string(errorMessage) {
+    this.chain.push(str(errorMessage))
+    return this
+  }
+
+  length() {
+    this.chain.push('')
+  }
+
+  get() {
     return value => {
-      if(!this.chain.length){
+      if (!this.chain.length) {
         return true
+      } else {
+        return this.chain[0](value)
       }
     }
   }
 }
 
-export default () => new validator()
+export const vv = () => new validator()

@@ -8,3 +8,7 @@ export const length = (value, length, message) => {
     throw 'Invalid argument'
   }
 }
+
+export const str = (value, message = 'Invalid input') => {
+  return typeof value === 'string' || message
+}
