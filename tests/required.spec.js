@@ -1,10 +1,11 @@
 import {
   requiredFactory
-} from '../validators/required'
+} from '../utils/required'
+import { requiredError } from '../utils/default'
 
 describe('requied.js', () => {
   it('requiredFactory is a function', () => {
-    expect(requiredFactory).toBeFunction()
+    expect(requiredFactory).toBeFunction() 
   })
 
   it('requiredFactory returns a function', () => {
@@ -26,7 +27,7 @@ describe('requied.js', () => {
       [null],
       ['     ']
     ])('Returns "Required" if value is %p', (value) => {
-      expect(requiredFactory()(value)).toBe('Required')
+      expect(requiredFactory()(value)).toBe(requiredError)
     })
 
     it('Returns custom error message provided in factory argument', () => {

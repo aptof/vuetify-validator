@@ -1,6 +1,6 @@
 {
   "name": "vuetify-validator",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.0",
   "description": "A validation library for Vuetify",
   "main": "index.js",
   "scripts": {
@@ -31,5 +31,7 @@
     "jest-chain": "^1.1.2",
     "jest-extended": "^0.11.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "validator": "^11.1.0"
+  }
 }

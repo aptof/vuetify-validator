@@ -1,25 +1,25 @@
-jest.mock('../validators/strings', () => ({
+/*jest.mock('../validators/strings', () => ({
   __esModule: true,
   stringFactory: jest.fn(),
   lengthFactory: jest.fn()
-}))
+}))*/
 
-jest.mock('../validators/required', () => ({
+jest.mock('../utils/required', () => ({
   __esModule: true,
   requiredFactory: jest.fn()
 }))
 
 import {
   vv
-} from '../validators/validator'
-import {
+} from '../index'
+/*import {
   stringFactory,
   lengthFactory,
-} from '../validators/strings'
-
+} from '../factories'
+*/
 import {
   requiredFactory
-} from '../validators/required'
+} from '../utils/required'
 
 describe('vv', () => {
   var msg = 'Custom error message'
@@ -93,46 +93,6 @@ describe('vv', () => {
     })
   })
 
-  it('length() is function of vv', () => {
-    expect(vv().length).toBeFunction()
-  })
-
-  it('length() should return the invoking vv instance', () => {
-    let instance = vv()
-    expect(instance.length(5)).toBe(instance)
-  })
-
-  it('length() should call the lengthFactory with the arguments', () => {
-    vv().length(10, msg)
-    expect(lengthFactory).toHaveBeenCalledWith(10, msg)
-  })
-
-  it('length() should add to chain the returned function of length factory', () => {
-    let spy = jest.fn()
-    lengthFactory.mockReturnValue(spy)
-    expect(vv().length().chain[0]).toBe(spy)
-  })
-
-  it('string is function of v', () => {
-    expect(vv().string).toBeFunction()
-  })
-
-  it('string() should return invoking vv instance', () => {
-    let instance = vv()
-    expect(instance.string()).toBe(instance)
-  })
- 
-  it('string() should call the stringFactory', () => {
-    vv().string('error')
-    expect(stringFactory).toHaveBeenCalledWith('error')
-  })
-
-  it('string() should add to the chain the retruned function of stringFactory', () => {
-    let spy = jest.fn()
-    stringFactory.mockReturnValue(spy)
-    expect(vv().string().chain[0]).toBe(spy)
-  })
-
   it('required is a function', () => {
     expect(vv().required).toBeFunction()
   })
@@ -151,5 +111,14 @@ describe('vv', () => {
     let spy = jest.fn()
     requiredFactory.mockReturnValue(spy)
     expect(vv().required('any').chain[0]).toBe(spy)
+  })
+
+  it('email is a function and returns a function', () => {
+    expect(vv().email).toBeFunction()
+  })
+
+  it('email() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.email()).toBe(instance)
   })
 })

@@ -1,4 +1,5 @@
-export const requiredFactory = (errorMessage = 'Required') => {
+import { requiredError } from './default'
+export const requiredFactory = (errorMessage = requiredError) => {
   return (value) => {
     if (value === undefined || value === null) {
       return errorMessage
