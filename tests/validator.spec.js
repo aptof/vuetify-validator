@@ -21,36 +21,36 @@ describe('vv', () => {
     expect(vv().get).toBeFunction()
   })
 
-  it('get() should return function', () => {
+  it('get() should return a function', () => {
     expect(vv().get()).toBeFunction()
   })
 
-  describe('function retured by get()', () => {
-    it('return true if chain is empty', () => {
-      let validator = vv().get()
-      expect(validator('any')).toBeTrue()
-    })
 
-    it('after chaining string the validator should return true if passed valid value', () => {
-      let validator = vv().string().get()
-      expect(validator('Any String')).toBeTrue()
-    })
-
-    it('on chaining string return "Invalid input" if value is not string', () => {
-      let validator = vv().string().get()
-      expect(validator(12345)).toBe('Invalid input')
-    })
-
-    it('on chaining string with custom message returns true if valid string', () => {
-      let validator = vv().string('Custom error').get()
-      expect(validator('AnyString')).toBeTrue()
-    })
-
-    it('on chaining string with custom message returns custom message if invlaid string', () => {
-      let validator = vv().string('Custom error').get()
-      expect(validator(123456)).toBe('Custom error')
-    })
+  it('return true if chain is empty', () => {
+    let validator = vv().get()
+    expect(validator('any')).toBeTrue()
   })
+
+  it('after chaining string the validator should return true if passed valid value', () => {
+    let validator = vv().string().get()
+    expect(validator('Any String')).toBeTrue()
+  })
+
+  it('on chaining string return "Invalid input" if value is not string', () => {
+    let validator = vv().string().get()
+    expect(validator(12345)).toBe('Invalid input')
+  })
+
+  it('on chaining string with custom message returns true if valid string', () => {
+    let validator = vv().string('Custom error').get()
+    expect(validator('AnyString')).toBeTrue()
+  })
+
+  it('on chaining string with custom message returns custom message if invlaid string', () => {
+    let validator = vv().string('Custom error').get()
+    expect(validator(123456)).toBe('Custom error')
+  })
+
 
   it('string is function of v', () => {
     expect(vv().string).toBeFunction()
@@ -86,17 +86,4 @@ describe('vv', () => {
     instance.length()
     expect(instance.chain.length).toBe(pre + 1)
   })
-  /*
-    it('string() should add str function to the chain', () => {
-      let instance = vv()
-      instance.string()
-      expect(instance.chain[0]).toBeFunction()
-      expect(instance.chain[0].name).toBe('str')
-    })
-
-    it('string() should return this instance', () => {
-      let instance = vv()
-      let newInstance = instance.string()
-      expect(newInstance.chain.length).toBe(1)
-    })*/
 })

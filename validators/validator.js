@@ -1,6 +1,6 @@
 import {
-  length,
-  str
+  lengthFactory,
+  stringFactory
 } from './strings'
 
 class validator {
@@ -16,12 +16,12 @@ class validator {
   }
 
   string(errorMessage) {
-    this.chain.push(str(errorMessage))
+    this.chain.push(stringFactory(errorMessage))
     return this
   }
 
-  length() {
-    this.chain.push('')
+  length(length, errorMessage) {
+    this.chain.push(lengthFactory(length, errorMessage))
   }
 
   get() {

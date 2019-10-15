@@ -1,14 +1,18 @@
-export const length = (value, length, message) => {
-  if(!message){
-    message = `Need to be exactly ${length} character(s)`
+export const lengthFactory = (length, errorMessage) => {
+  if (!errorMessage) {
+    errorMessage = `Need to be exactly ${length} character(s)`
   }
-  if (typeof value === 'string') {
-    return value.length == length || message
-  } else {
-    throw 'Invalid argument'
+  return value => {
+    if (typeof value === 'string') {
+      return value.length == length || errorMessage
+    } else {
+      throw 'Invalid argument'
+    }
   }
 }
 
-export const str = (value, message = 'Invalid input') => {
-  return typeof value === 'string' || message
+export const stringFactory = (errorMessage = 'Invalid input') => {
+  return value => {
+    return typeof value === 'string' || errorMessage
+  }
 }

@@ -1,40 +1,65 @@
-import { length, str } from '../validators/strings'
+import {
+  lengthFactory,
+  stringFactory
+} from '../validators/strings'
+import {
+  vv
+} from '../validators/validator'
 
 describe('Strings.js', () => {
-  it('length is a function', () => {
-    expect(length).toBeFunction()
+  var instance = vv()
+  var msg = 'Custom error message'
+  beforeEach(() => {
+    instance = vv()
   })
 
-  it('length(value, length) returns true if value has exact same lenght', () => {
-    expect(length('any', 3)).toBe(true)
+  it('lengthFactory is a function and returns a fuction', () => {
+    expect(lengthFactory).toBeFunction()
+    expect(lengthFactory()).toBeFunction()
   })
 
-  it('length throws exception if value is not string', () => {
-    expect(() => length(4845, 4)).toThrow('Invalid argument')
+  //I do not like idea to test same functionality twice. I will assert it against item of chain
+  describe('vv().length() add the The returned fuction of the length factory in chain, then', () => {
+    it('The function returns true if value has exact same length', () => {
+      instance.length(5)
+      expect(instance.chain[0]('sfive')).toBeTrue()
+    })
+
+    it('The function throws exception if value is not string', () => {
+      instance.length(5)
+      expect(() => instance.chain[0](123456)).toThrow('Invalid argument')
+    })
+
+    it('The function returns "Need to be exactly .. character(s)" if length does not match', () => {
+      instance.length(5)
+      expect(instance.chain[0]('Good')).toBe('Need to be exactly 5 character(s)')
+    })
+
+    it('The function should return custom error message if error message is provided in the factory arg', () => {
+      instance.length(5, msg)
+      expect(instance.chain[0]('Good')).toBe(msg)
+    })
   })
 
-  it('length() returns "Need to be exactly .. character(s)" if length does not match', () => {
-    expect(length('123456', 5)).toBe('Need to be exactly 5 character(s)')
+  it('stringFactory is a function and returns a function', () => {
+    expect(stringFactory).toBeFunction()
+    expect(stringFactory()).toBeFunction()
   })
 
-  it('length() should return custom error message if error message is provided in third arg', () => {
-    let msg = 'Custom error message'
-    expect(length('123456', 5, msg)).toBe(msg)
-  })
+  describe('vv().string() add the returned function of stringFactory to the chain, then', () => {
+    it('The function returns true if value is a string', () => {
+      instance.string()
+      expect(instance.chain[0]('Any string')).toBeTrue()
+    })
 
-  it('string is a function', () => {
-    expect(str).toBeFunction()
-  })
+    it('The function returns "Invalid input" if value is not string', () => {
+      instance.string()
+      expect(instance.chain[0](154)).toBe('Invalid input')
+    })
 
-  it('str returns true if value is a string', () => {
-    expect(str('Any string')).toBeTrue()
-  })
-
-  it('str returns "Invalid input" if value is not string', ()=>{
-    expect(str(154)).toBe('Invalid input')
-  })
-
-  it('str should return custom error if value not string and custom error provided', () => {
-    expect(str(154, 'Custom error message')).toBe('Custom error message')
+    it('The function should return custom error if value not string and custom error provided', () => {
+      instance.string(msg)
+      expect(instance.chain[0](154)).toBe(msg)
+    })
   })
 })
