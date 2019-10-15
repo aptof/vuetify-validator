@@ -121,7 +121,7 @@ describe('vv', () => {
     let instance = vv()
     expect(instance.string()).toBe(instance)
   })
-
+ 
   it('string() should call the stringFactory', () => {
     vv().string('error')
     expect(stringFactory).toHaveBeenCalledWith('error')

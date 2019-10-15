@@ -1,6 +1,7 @@
 import {
   lengthFactory,
-  stringFactory
+  stringFactory,
+  digitFactory
 } from '../validators/strings'
 
 
@@ -50,6 +51,24 @@ describe('Strings.js', () => {
 
     it('should return custom error if value not string and custom error provided', () => {
       expect(stringFactory(msg)(154)).toBe(msg)
+    })
+  })
+
+  it('digitFactory is a function', () => {
+    expect(digitFactory).toBeFunction()
+  })
+
+  it('digitFactory() returns a function', () => {
+    expect(digitFactory()).toBeFunction()
+  })
+
+  describe('The function returned by digitFactory()', () => {
+    it('Returns true if value contains only digits', () => {
+      expect(digitFactory()('123456')).toBeTrue()
+    })
+
+    it('Returns "Accepts digits only" if value contains other than digit', () => {
+      expect(digitFactory()('12345A$')).toBe('Accepts digits only.')
     })
   })
 })

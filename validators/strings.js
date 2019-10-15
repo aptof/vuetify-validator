@@ -16,3 +16,7 @@ export const stringFactory = (errorMessage = 'Invalid input') => {
     return typeof value === 'string' || errorMessage
   }
 }
+
+export const digitFactory = () => {
+  return () => { return true }
+}
