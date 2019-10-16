@@ -1,8 +1,8 @@
-/*jest.mock('../validators/strings', () => ({
+jest.mock('../utils/strings', () => ({
   __esModule: true,
-  stringFactory: jest.fn(),
-  lengthFactory: jest.fn()
-}))*/
+  emailFactory: jest.fn(),
+  //lengthFactory: jest.fn()
+}))
 
 jest.mock('../utils/required', () => ({
   __esModule: true,
@@ -12,14 +12,13 @@ jest.mock('../utils/required', () => ({
 import {
   vv
 } from '../index'
-/*import {
-  stringFactory,
-  lengthFactory,
-} from '../factories'
-*/
+
 import {
   requiredFactory
 } from '../utils/required'
+import {
+  emailFactory
+} from '../utils/strings'
 
 describe('vv', () => {
   var msg = 'Custom error message'
@@ -107,18 +106,29 @@ describe('vv', () => {
     expect(requiredFactory).toHaveBeenCalledWith(msg)
   })
 
-  it('required() should add the return method of requiredFactory to the chain', () => {
+  it('required() should add the returned method of requiredFactory to the chain', () => {
     let spy = jest.fn()
     requiredFactory.mockReturnValue(spy)
     expect(vv().required('any').chain[0]).toBe(spy)
   })
 
-  it('email is a function and returns a function', () => {
+  it('email is a function', () => {
     expect(vv().email).toBeFunction()
   })
 
   it('email() should reurn the invoking vv', () => {
     let instance = vv()
     expect(instance.email()).toBe(instance)
+  })
+
+  it('email() should call emailFactory with the arguments', () => {
+    vv().email(msg)
+    expect(emailFactory).toHaveBeenCalledWith(msg)
+  })
+
+  it('email() should add the function returned by the emailFactory to chain', () => {
+    let spy = jest.fn()
+    emailFactory.mockReturnValue(spy)
+    expect(vv().email().chain[0]).toBe(spy)
   })
 })

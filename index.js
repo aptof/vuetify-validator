@@ -1,4 +1,4 @@
-import * as factories from './utils/strings'
+import * as strings from './utils/strings'
 import {requiredFactory} from './utils/required'
 class validator {
   constructor() {
@@ -30,7 +30,8 @@ class validator {
     return this
   }
 
-  email(){
+  email(errorMessage){
+    this.chain.push(strings.emailFactory(errorMessage))
     return this
   }
 }

@@ -4,7 +4,7 @@ import {
 import * as defaul from '../utils/default'
 import validator from 'validator'
 
-describe('Factories.js', () => {
+describe('strings.js', () => {
   let msg = 'Custom error or any stirng'
 
   it('emailFactory is a funiotn and returns a function', () => {
