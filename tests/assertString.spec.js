@@ -5,7 +5,8 @@ describe('assertString.js', () => {
     ['4'],
     ['54'],
     ['Any'],
-    ['    ']
+    ['    '],
+    ['']
   ])('Returns true if arg is %p', (value) => {
     expect(assertString(value)).toBeTrue()
   })
@@ -14,7 +15,9 @@ describe('assertString.js', () => {
     [12],
     [10],
     [20],
-    ['']
+    [undefined],
+    [null],
+    [{any:'any'}]
   ])('Returns false if arg is %p', (value) => {
     expect(assertString(value)).toBeFalse()
   })

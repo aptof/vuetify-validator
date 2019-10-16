@@ -33,7 +33,7 @@ describe('strings.js', () => {
       expect(emailFactory(msg)('notaemail')).toBe(msg)
     })
 
-    it.each([[undefined], [null], ['    ']])('Should return true if value is %p', (value) => {
+    it.each([[undefined], [null], ['    '], ['']])('Should return true if value is %p', (value) => {
       expect(emailFactory()(value)).toBeTrue()
     })
   })
