@@ -1,7 +1,7 @@
 import {
   emailFactory
-} from '../utils/strings'
-import * as defaul from '../utils/default'
+} from '../../factories/stringFactories'
+import * as defaul from '../../utils/errorMessage'
 import validator from 'validator'
 
 describe('strings.js', () => {

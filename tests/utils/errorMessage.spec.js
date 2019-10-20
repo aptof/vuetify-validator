@@ -1,6 +1,6 @@
-import * as defalt from '../utils/default'
+import * as defalt from '../../utils/errorMessage'
 
-describe('default.js', () => {
+describe('utils/errorMessage.js', () => {
   it('eamilError is ...', () => {
     expect(defalt.emailError).toBe('Invalid email')
   })

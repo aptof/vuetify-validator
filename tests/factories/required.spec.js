@@ -1,7 +1,7 @@
 import {
   requiredFactory
-} from '../utils/required'
-import { requiredError } from '../utils/default'
+} from '../../factories/required'
+import { requiredError } from '../../utils/errorMessage'
 
 describe('requied.js', () => {
   it('requiredFactory is a function', () => {

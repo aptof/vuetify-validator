@@ -1,17 +1,8 @@
-import validator from 'validator';
-import assertString from './assertString'
-import * as defaul from './default'
+import assertString from "./assertString"
 
-export const emailFactory = (errorMessage = defaul.emailError) => {
-  return (value) => {
-    if (value == undefined || value == null) {
-      return true
-    }
-    if (assertString(value)) {
-      if (value.trim().length == 0 || validator.isEmail(value)) {
-        return true
-      }
-    }
-    return errorMessage
-  }
+export const isEmail = value => {
+  if (assertString(value)) {
+    const reg = /(^$|^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$)/
+    return reg.test(value.trim())
+  } else return true
 }

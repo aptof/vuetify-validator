@@ -1,5 +1,5 @@
 import { vv } from '../index'
-import * as def from '../utils/default'
+import * as def from '../utils/errorMessage'
 
 describe('e2e.js: The library', () => {
   it('should return true for valid email', () => {

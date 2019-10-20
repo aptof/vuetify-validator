@@ -1,5 +1,5 @@
-import * as strings from './utils/strings'
-import {requiredFactory} from './utils/required'
+import * as strings from './factories/stringFactories'
+import {requiredFactory} from './factories/required'
 class validator {
   constructor() {
     this.chain = []

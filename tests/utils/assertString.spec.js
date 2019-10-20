@@ -1,4 +1,4 @@
-import assertString from '../utils/assertString'
+import assertString from '../../utils/assertString'
 
 describe('assertString.js', () => {
   it.each([

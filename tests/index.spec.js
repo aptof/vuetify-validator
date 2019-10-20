@@ -1,10 +1,10 @@
-jest.mock('../utils/strings', () => ({
+jest.mock('../factories/stringFactories', () => ({
   __esModule: true,
   emailFactory: jest.fn(),
   //lengthFactory: jest.fn()
 }))
 
-jest.mock('../utils/required', () => ({
+jest.mock('../factories/required', () => ({
   __esModule: true,
   requiredFactory: jest.fn()
 }))
@@ -15,10 +15,10 @@ import {
 
 import {
   requiredFactory
-} from '../utils/required'
+} from '../factories/required'
 import {
   emailFactory
-} from '../utils/strings'
+} from '../factories/stringFactories'
 
 describe('vv', () => {
   var msg = 'Custom error message'
