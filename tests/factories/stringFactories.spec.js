@@ -1,11 +1,12 @@
 import {
   emailFactory
 } from '../../factories/stringFactories'
-import * as defaul from '../../utils/errorMessage'
-import validator from 'validator'
+import * as message from '../../utils/errorMessage'
+import validator from '../../utils/strings'
 
-describe('strings.js', () => {
+describe('factories/stringFactories.js', () => {
   let msg = 'Custom error or any stirng'
+  let value = 'any value'
 
   it('emailFactory is a funiotn and returns a function', () => {
     expect(emailFactory).toBeFunction()
@@ -13,28 +14,30 @@ describe('strings.js', () => {
   })
 
   //Testing the return value not the functionality of validatorjs library
-  describe('The function returned by email factory', () => {
-    it('Should call isEmail of validator library', () => {
+  describe('The function returned by emailFactory', () => {
+    afterEach(() => {
+      jest.restoreAllMocks()
+    })
+
+    it('should call isEmail with value', () => {
       let spy = jest.spyOn(validator, 'isEmail')
-      let email = 'tusharbakshi6@gmail.com'
-      emailFactory()(email)
-      expect(spy).toHaveBeenCalledWith(email)
+      emailFactory()(value)
+      expect(spy).toHaveBeenCalledWith(value)
+    })
+    
+    it('Returns true if isEmail returns true', () => {
+      jest.spyOn(validator, 'isEmail').mockImplementation(() => true)
+      expect(emailFactory()()).toBeTrue()
     })
 
-    it('Returns true if valid email', () => {
-      expect(emailFactory()('tusharbakshi6@gmail.com')).toBeTrue()
-    })
-
-    it('Should return defaul email error if invalid email', () => {
-      expect(emailFactory()('notaemail')).toBe(defaul.emailError)
+    it('Should return defaul email error if isEmail returns false', () => {
+      jest.spyOn(validator, 'isEmail').mockImplementation(()=>false)
+      expect(emailFactory()()).toBe(message.emailError)
     })
 
     it('Should return custom error if provided on invalid email', () => {
-      expect(emailFactory(msg)('notaemail')).toBe(msg)
-    })
-
-    it.each([[undefined], [null], ['    '], ['']])('Should return true if value is %p', (value) => {
-      expect(emailFactory()(value)).toBeTrue()
+      jest.spyOn(validator, 'isEmail').mockImplementation(()=>false)
+      expect(emailFactory(msg)()).toBe(msg)
     })
   })
 })

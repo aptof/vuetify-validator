@@ -1,17 +1,9 @@
-import validator from 'validator';
 import assertString from '../utils/assertString'
-import * as defaul from '../utils/errorMessage'
+import * as message from '../utils/errorMessage'
+import validator from '../utils/strings'
 
-export const emailFactory = (errorMessage = defaul.emailError) => {
+export const emailFactory = (errorMessage = message.emailError) => {
   return (value) => {
-    if (value == undefined || value == null) {
-      return true
-    }
-    if (assertString(value)) {
-      if (value.trim().length == 0 || validator.isEmail(value)) {
-        return true
-      }
-    }
-    return errorMessage
+    return validator.isEmail(value) || errorMessage
   }
 }
