@@ -30,13 +30,9 @@ describe('factories/stringFactories.js', () => {
       expect(emailFactory()()).toBeTrue()
     })
 
-    it('Should return defaul email error if isEmail returns false', () => {
+    it('Should return error message if isEmail returns false', () => {
       jest.spyOn(validator, 'isEmail').mockImplementation(()=>false)
-      expect(emailFactory()()).toBe(message.emailError)
-    })
-
-    it('Should return custom error if provided on invalid email', () => {
-      jest.spyOn(validator, 'isEmail').mockImplementation(()=>false)
+      expect(emailFactory()()).toBe(message.emailError())
       expect(emailFactory(msg)()).toBe(msg)
     })
   })

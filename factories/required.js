@@ -1,5 +1,5 @@
 import { requiredError } from '../utils/errorMessage'
-export const requiredFactory = (errorMessage = requiredError) => {
+export const requiredFactory = (errorMessage = requiredError()) => {
   return (value) => {
     if (value === undefined || value === null) {
       return errorMessage

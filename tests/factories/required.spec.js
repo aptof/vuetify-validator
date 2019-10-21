@@ -27,7 +27,7 @@ describe('requied.js', () => {
       [null],
       ['     ']
     ])('Returns "Required" if value is %p', (value) => {
-      expect(requiredFactory()(value)).toBe(requiredError)
+      expect(requiredFactory()(value)).toBe(requiredError())
     })
 
     it('Returns custom error message provided in factory argument', () => {

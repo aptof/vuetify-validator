@@ -1,4 +1,4 @@
-import assertString from '../../utils/assertString'
+import isString from '../../utils/isString'
 
 describe('assertString.js', () => {
   it.each([
@@ -8,7 +8,7 @@ describe('assertString.js', () => {
     ['    '],
     ['']
   ])('Returns true if arg is %p', (value) => {
-    expect(assertString(value)).toBeTrue()
+    expect(isString(value)).toBeTrue()
   })
 
   it.each([
@@ -19,6 +19,6 @@ describe('assertString.js', () => {
     [null],
     [{any:'any'}]
   ])('Returns false if arg is %p', (value) => {
-    expect(assertString(value)).toBeFalse()
+    expect(isString(value)).toBeFalse()
   })
 })

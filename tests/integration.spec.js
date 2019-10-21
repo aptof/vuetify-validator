@@ -1,7 +1,7 @@
 import { vv } from '../index'
-import * as def from '../utils/errorMessage'
+import * as message from '../utils/errorMessage'
 
-describe('e2e.js: The library', () => {
+describe('Integration: The library', () => {
   it('should return true for valid email', () => {
     let validator = vv().email().get()
     expect(validator('tusha@gmail.com')).toBeTrue()
@@ -24,16 +24,16 @@ describe('e2e.js: The library', () => {
 
   it('should return errorMessage required.email for value "   "', () => {
     let validator = vv().required().email().get()
-    expect(validator('     ')).toBe(def.requiredError)
+    expect(validator('     ')).toBe(message.requiredError())
   })
 
   it('should return errorMessage email.required for value "     "', () => {
     let validator = vv().email().required().get()
-    expect(validator('    ')).toBe(def.requiredError)
+    expect(validator('    ')).toBe(message.requiredError())
   })
 
   it('should return email error for invalid email on email.required', () => {
     let validator = vv().email().required().get()
-    expect(validator('notaemail')).toBe(def.emailError)
+    expect(validator('notaemail')).toBe(message.emailError())
   })
 })

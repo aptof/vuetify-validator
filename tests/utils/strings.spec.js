@@ -26,7 +26,7 @@ describe('utils/strings.js', () => {
     [' abcdefgh ', 5, true],
     ['abc efgh', 8, true],
     ['abcdefg', 8, false],
-    //[' abcdefg ', 8, false],
+    [' abcdefg ', 8, false],
     [undefined, 6, true],
     ['', 5, true],
     ['        ', 8, true],
@@ -114,7 +114,79 @@ describe('utils/strings.js', () => {
     [false, 'abcde', '  '],
     [false, '', 'abde'],
     [false, 'abcde', ''],
-  ])('isSame returns %p if value %p to match with %p', (expected, value, match) => {
+  ])('isSame returns %p if value %p have to match with %p', (expected, value, match) => {
     expect(validator.isSame(value, match)).toBe(expected)
+  })
+
+  it.each([
+    [true, 'abcdFEs'],
+    [true, '     '],
+    [true, ''],
+    [true, undefined],
+    [true, null],
+    [false, 'afie45Def'],
+    [false, '123456'],
+    [false, 'afe$']
+  ])('isAlpha returs %p if value is %p', (expected, value) => {
+    expect(validator.isAlpha(value)).toBe(expected)
+  })
+
+  it.each([
+    [true, 'abcdFEs'],
+    [true, '     '],
+    [true, ''],
+    [true, undefined],
+    [true, null],
+    [true, 'afie45Def'],
+    [true, '123456'],
+    [true, 'AB5'],
+    [false, 'Ab8$']
+  ])('isAlphaNumeric returs %p if value is %p', (expected, value) => {
+    expect(validator.isAlphaNumeric(value)).toBe(expected)
+  })
+
+  it.each([
+    [false, 'abcdFEs'],
+    [true, '     '],
+    [true, ''],
+    [true, undefined],
+    [true, null],
+    [false, 'afie45Def'],
+    [true, '123456'],
+    [false, 'AB5'],
+    [false, 'Ab8$']
+  ])('isNumeric returs %p if value is %p', (expected, value) => {
+    expect(validator.isNumeric(value)).toBe(expected)
+  })
+
+  it.each([
+    ['abcdefgh', 8, true],
+    [' abcde ', 5, true],
+    ['abc', 6, false],
+    [' fgh ', 5, false],
+    ['abc efgh', 8, true],
+    ['abcdefg', 2, false],
+    [' abcdefg ', 8, false],
+    [undefined, 6, true],
+    ['', 5, true],
+    ['        ', 8, true],
+    [null, 8, true]
+  ])('isLength: while value %p, length %p returns %p', (value, length, expected) => {
+    expect(validator.isLength(value, length)).toBe(expected)
+  })
+
+  it.each([
+    [false, 'abcdFEs'],
+    [true, '     '],
+    [true, ''],
+    [true, undefined],
+    [true, null],
+    [false, 'afie45Def'],
+    [true, '123456'],
+    [false, 'AB5'],
+    [false, 'Ab8$'],
+    [true, '-123.45']
+  ])('isDecimal returs %p if value is %p', (expected, value) => {
+    expect(validator.isDecimal(value)).toBe(expected)
   })
 })
