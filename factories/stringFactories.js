@@ -32,9 +32,9 @@ export const hasADigitFactory = (errorMessage = message.hasADigitError()) => {
   }
 }
 
-export const isSameFactory = (errorMessage = message.isSameError()) => {
+export const isSameFactory = (match, errorMessage = message.isSameError()) => {
   return (value) => {
-    return validator.isSame(value) || errorMessage
+    return validator.isSame(value, match) || errorMessage
   }
 }
 

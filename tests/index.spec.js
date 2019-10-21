@@ -1,7 +1,11 @@
 jest.mock('../factories/stringFactories', () => ({
   __esModule: true,
   emailFactory: jest.fn(),
-  //lengthFactory: jest.fn()
+  minLengthFactory: jest.fn(),
+  hasAnUpperFactory: jest.fn(),
+  hasALowerFactory: jest.fn(),
+  hasADigitFactory: jest.fn(),
+  isSameFactory: jest.fn()
 }))
 
 jest.mock('../factories/required', () => ({
@@ -17,7 +21,12 @@ import {
   requiredFactory
 } from '../factories/required'
 import {
-  emailFactory
+  emailFactory,
+  minLengthFactory,
+  hasAnUpperFactory,
+  hasALowerFactory,
+  hasADigitFactory,
+  isSameFactory,
 } from '../factories/stringFactories'
 
 describe('vv', () => {
@@ -130,5 +139,69 @@ describe('vv', () => {
     let spy = jest.fn()
     emailFactory.mockReturnValue(spy)
     expect(vv().email().chain[0]).toBe(spy)
+  })
+
+  it('minLength() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.minLength()).toBe(instance)
+  })
+
+  it('minLength() should call minLengthFactory with the arguments', () => {
+    vv().minLength(5, msg)
+    expect(minLengthFactory).toHaveBeenCalledWith(5, msg)
+  })
+
+  it('minLength() should add the function returned by the minLengthFactory to chain', () => {
+    let spy = jest.fn()
+    minLengthFactory.mockReturnValue(spy)
+    expect(vv().minLength().chain[0]).toBe(spy)
+  })
+
+  it('containsUpper() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.containsUpper()).toBe(instance)
+  })
+
+  it('containsUpper() should call hasAnUpperFactory with the arguments', () => {
+    vv().containsUpper(msg)
+    expect(hasAnUpperFactory).toHaveBeenCalledWith(msg)
+  })
+
+  it('containsUpper() should add the function returned by the hasAnUpperFactory to chain', () => {
+    let spy = jest.fn()
+    hasAnUpperFactory.mockReturnValue(spy)
+    expect(vv().containsUpper().chain[0]).toBe(spy)
+  })
+
+  it('containsLower() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.containsLower()).toBe(instance)
+  })
+  
+  it('containsLower() should call hasALowerFactory with the arguments', () => {
+    vv().containsLower(msg)
+    expect(hasALowerFactory).toHaveBeenCalledWith(msg)
+  })
+  
+  it('containsLower() should add the function returned by the hasALowerFactory to chain', () => {
+    let spy = jest.fn()
+    hasALowerFactory.mockReturnValue(spy)
+    expect(vv().containsLower().chain[0]).toBe(spy)
+  })
+
+  it('containsDigit() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.containsDigit()).toBe(instance)
+  })
+  
+  it('containsDigit() should call hasADigitFactory with the arguments', () => {
+    vv().containsDigit(msg)
+    expect(hasADigitFactory).toHaveBeenCalledWith(msg)
+  })
+  
+  it('containsDigit() should add the function returned by the hasADigitFactory to chain', () => {
+    let spy = jest.fn()
+    hasADigitFactory.mockReturnValue(spy)
+    expect(vv().containsDigit().chain[0]).toBe(spy)
   })
 })

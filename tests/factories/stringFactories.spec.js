@@ -138,10 +138,10 @@ describe('factories/stringFactories.js', () => {
   describe('The function returned by isSameFactory', () => {
     afterEach(() => jest.restoreAllMocks())
   
-    it('should call isSame of validator with value', () => {
+    it('should call isSame of validator with value and match', () => {
       let spy = jest.spyOn(validator, 'isSame')
-      isSameFactory()(value)
-      expect(spy).toHaveBeenCalledWith(value)
+      isSameFactory('any match')(value)
+      expect(spy).toHaveBeenCalledWith(value, 'any match')
     })
   
     it('Returns true if isSame returns true', () => {
@@ -152,7 +152,7 @@ describe('factories/stringFactories.js', () => {
     it('Should return error message if isSame returns false', () => {
       jest.spyOn(validator, 'isSame').mockImplementation(() => false)
       expect(isSameFactory()()).toBe(message.isSameError())
-      expect(isSameFactory(msg)()).toBe(msg)
+      expect(isSameFactory('any match', msg)()).toBe(msg)
     })
   })
 
