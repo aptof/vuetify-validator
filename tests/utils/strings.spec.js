@@ -31,8 +31,8 @@ describe('utils/strings.js', () => {
     ['', 5, true],
     ['        ', 8, true],
     [null, 8, true]
-  ])('isMinlen: while value %p, length %p returns %p', (value, length, expected) => {
-    expect(validator.isMinLen(value, length)).toBe(expected)
+  ])('isMinlength: while value %p, length %p returns %p', (value, length, expected) => {
+    expect(validator.isMinLength(value, length)).toBe(expected)
   })
 
   it.each([

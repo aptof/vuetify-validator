@@ -1,5 +1,3 @@
-describe('Playground', () => {
-  it('Regex testing', ()=>{
-    expect(true).toBeTrue()
-  })
+it('sanity', () => {
+  expect(true).toBeTrue()
 })
