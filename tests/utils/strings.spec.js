@@ -1,4 +1,4 @@
-import validator from '../../utils/strings'
+import validator from '../../src/utils/strings'
 
 describe('utils/strings.js', () => {
   it.each([

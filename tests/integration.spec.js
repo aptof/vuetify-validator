@@ -1,5 +1,7 @@
-import { vv } from '../index'
-import * as message from '../utils/errorMessage'
+import {
+  vv
+} from '../lib/index'
+import * as message from '../src/utils/errorMessage'
 
 describe('Integration: The library', () => {
   it('should return true for valid email', () => {

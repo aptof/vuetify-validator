@@ -1,4 +1,4 @@
-import * as message from '../../utils/errorMessage'
+import * as message from '../../src/utils/errorMessage'
 
 describe('utils/errorMessage.js', () => {
   it('eamilError', () => {

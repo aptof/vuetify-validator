@@ -2,9 +2,10 @@
   "name": "@aptof/vuetify-validator",
   "version": "0.0.1-beta.0",
   "description": "A validation library for Vuetify",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch --no-cache",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/aptof/vuetify-validator#readme",
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@types/jest": "^24.0.19",

@@ -1,11 +1,13 @@
 import {
   requiredFactory
-} from '../../factories/required'
-import { requiredError } from '../../utils/errorMessage'
+} from '../../src/factories/required'
+import {
+  requiredError
+} from '../../src/utils/errorMessage'
 
 describe('requied.js', () => {
   it('requiredFactory is a function', () => {
-    expect(requiredFactory).toBeFunction() 
+    expect(requiredFactory).toBeFunction()
   })
 
   it('requiredFactory returns a function', () => {

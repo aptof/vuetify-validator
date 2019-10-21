@@ -10,9 +10,9 @@ import {
   isNumericFactory,
   isLengthFactory,
   isDecimalFactory
-} from '../../factories/stringFactories'
-import * as message from '../../utils/errorMessage'
-import validator from '../../utils/strings'
+} from '../../src/factories/stringFactories'
+import * as message from '../../src/utils/errorMessage'
+import validator from '../../src/utils/strings'
 
 describe('factories/stringFactories.js', () => {
   let msg = 'Custom error or any stirng'
@@ -95,18 +95,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by hasALowerFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call hasALower of validator with value', () => {
       let spy = jest.spyOn(validator, 'hasALower')
       hasALowerFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if hasALower returns true', () => {
       jest.spyOn(validator, 'hasALower').mockImplementation(() => true)
       expect(hasALowerFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if hasALower returns false', () => {
       jest.spyOn(validator, 'hasALower').mockImplementation(() => false)
       expect(hasALowerFactory()()).toBe(message.hasALowerError())
@@ -116,18 +116,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by hasADigitFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call hasADigit of validator with value', () => {
       let spy = jest.spyOn(validator, 'hasADigit')
       hasADigitFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if hasADigit returns true', () => {
       jest.spyOn(validator, 'hasADigit').mockImplementation(() => true)
       expect(hasADigitFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if hasADigit returns false', () => {
       jest.spyOn(validator, 'hasADigit').mockImplementation(() => false)
       expect(hasADigitFactory()()).toBe(message.hasADigitError())
@@ -137,18 +137,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by isSameFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call isSame of validator with value and match', () => {
       let spy = jest.spyOn(validator, 'isSame')
       isSameFactory('any match')(value)
       expect(spy).toHaveBeenCalledWith(value, 'any match')
     })
-  
+
     it('Returns true if isSame returns true', () => {
       jest.spyOn(validator, 'isSame').mockImplementation(() => true)
       expect(isSameFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if isSame returns false', () => {
       jest.spyOn(validator, 'isSame').mockImplementation(() => false)
       expect(isSameFactory()()).toBe(message.isSameError())
@@ -158,18 +158,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by isAlphaFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call isAlpha of validator with value', () => {
       let spy = jest.spyOn(validator, 'isAlpha')
       isAlphaFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if isAlpha returns true', () => {
       jest.spyOn(validator, 'isAlpha').mockImplementation(() => true)
       expect(isAlphaFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if isAlpha returns false', () => {
       jest.spyOn(validator, 'isAlpha').mockImplementation(() => false)
       expect(isAlphaFactory()()).toBe(message.isAlphaError())
@@ -179,18 +179,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by isAlphaNumericFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call isAlphaNumeric of validator with value', () => {
       let spy = jest.spyOn(validator, 'isAlphaNumeric')
       isAlphaNumericFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if isAlphaNumeric returns true', () => {
       jest.spyOn(validator, 'isAlphaNumeric').mockImplementation(() => true)
       expect(isAlphaNumericFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if isAlphaNumeric returns false', () => {
       jest.spyOn(validator, 'isAlphaNumeric').mockImplementation(() => false)
       expect(isAlphaNumericFactory()()).toBe(message.isAlphaNumericError())
@@ -200,18 +200,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by isNumericFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call isNumeric of validator with value', () => {
       let spy = jest.spyOn(validator, 'isNumeric')
       isNumericFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if isNumeric returns true', () => {
       jest.spyOn(validator, 'isNumeric').mockImplementation(() => true)
       expect(isNumericFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if isNumeric returns false', () => {
       jest.spyOn(validator, 'isNumeric').mockImplementation(() => false)
       expect(isNumericFactory()()).toBe(message.isNumericError())
@@ -221,18 +221,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by isLengthFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call isLength of validator with value', () => {
       let spy = jest.spyOn(validator, 'isLength')
       isLengthFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if isLength returns true', () => {
       jest.spyOn(validator, 'isLength').mockImplementation(() => true)
       expect(isLengthFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if isLength returns false', () => {
       jest.spyOn(validator, 'isLength').mockImplementation(() => false)
       expect(isLengthFactory()()).toBe(message.isLengthError())
@@ -242,18 +242,18 @@ describe('factories/stringFactories.js', () => {
 
   describe('The function returned by isDecimalFactory', () => {
     afterEach(() => jest.restoreAllMocks())
-  
+
     it('should call isDecimal of validator with value', () => {
       let spy = jest.spyOn(validator, 'isDecimal')
       isDecimalFactory()(value)
       expect(spy).toHaveBeenCalledWith(value)
     })
-  
+
     it('Returns true if isDecimal returns true', () => {
       jest.spyOn(validator, 'isDecimal').mockImplementation(() => true)
       expect(isDecimalFactory()()).toBeTrue()
     })
-  
+
     it('Should return error message if isDecimal returns false', () => {
       jest.spyOn(validator, 'isDecimal').mockImplementation(() => false)
       expect(isDecimalFactory()()).toBe(message.isDecimalError())

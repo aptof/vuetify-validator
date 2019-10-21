@@ -1,4 +1,4 @@
-jest.mock('../factories/stringFactories', () => ({
+jest.mock('../src/factories/stringFactories', () => ({
   __esModule: true,
   emailFactory: jest.fn(),
   minLengthFactory: jest.fn(),
@@ -8,18 +8,18 @@ jest.mock('../factories/stringFactories', () => ({
   isSameFactory: jest.fn()
 }))
 
-jest.mock('../factories/required', () => ({
+jest.mock('../src/factories/required', () => ({
   __esModule: true,
   requiredFactory: jest.fn()
 }))
 
 import {
   vv
-} from '../index'
+} from '../src/index'
 
 import {
   requiredFactory
-} from '../factories/required'
+} from '../src/factories/required'
 import {
   emailFactory,
   minLengthFactory,
@@ -27,7 +27,7 @@ import {
   hasALowerFactory,
   hasADigitFactory,
   isSameFactory,
-} from '../factories/stringFactories'
+} from '../src/factories/stringFactories'
 
 describe('vv', () => {
   var msg = 'Custom error message'
@@ -177,12 +177,12 @@ describe('vv', () => {
     let instance = vv()
     expect(instance.containsLower()).toBe(instance)
   })
-  
+
   it('containsLower() should call hasALowerFactory with the arguments', () => {
     vv().containsLower(msg)
     expect(hasALowerFactory).toHaveBeenCalledWith(msg)
   })
-  
+
   it('containsLower() should add the function returned by the hasALowerFactory to chain', () => {
     let spy = jest.fn()
     hasALowerFactory.mockReturnValue(spy)
@@ -193,12 +193,12 @@ describe('vv', () => {
     let instance = vv()
     expect(instance.containsDigit()).toBe(instance)
   })
-  
+
   it('containsDigit() should call hasADigitFactory with the arguments', () => {
     vv().containsDigit(msg)
     expect(hasADigitFactory).toHaveBeenCalledWith(msg)
   })
-  
+
   it('containsDigit() should add the function returned by the hasADigitFactory to chain', () => {
     let spy = jest.fn()
     hasADigitFactory.mockReturnValue(spy)
