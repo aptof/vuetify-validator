@@ -5,7 +5,11 @@ jest.mock('../src/factories/stringFactories', () => ({
   hasAnUpperFactory: jest.fn(),
   hasALowerFactory: jest.fn(),
   hasADigitFactory: jest.fn(),
-  isSameFactory: jest.fn()
+  isAlphaFactory: jest.fn(),
+  isAlphaNumericFactory: jest.fn(),
+  isNumericFactory: jest.fn(),
+  isLengthFactory: jest.fn(),
+  isDecimalFactory: jest.fn()
 }))
 
 jest.mock('../src/factories/required', () => ({
@@ -14,7 +18,8 @@ jest.mock('../src/factories/required', () => ({
 }))
 
 import {
-  vv
+  vv,
+  confirm
 } from '../src/index'
 
 import {
@@ -26,7 +31,11 @@ import {
   hasAnUpperFactory,
   hasALowerFactory,
   hasADigitFactory,
-  isSameFactory,
+  isAlphaFactory,
+  isAlphaNumericFactory,
+  isNumericFactory,
+  isLengthFactory,
+  isDecimalFactory
 } from '../src/factories/stringFactories'
 
 describe('vv', () => {
@@ -203,5 +212,89 @@ describe('vv', () => {
     let spy = jest.fn()
     hasADigitFactory.mockReturnValue(spy)
     expect(vv().containsDigit().chain[0]).toBe(spy)
+  })
+
+  it('confirm to be true for same value', () => {
+    expect(confirm('value', ' value ')).toBeTrue()
+  })
+
+  it('alphabatesOnly() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.alphabatesOnly()).toBe(instance)
+  })
+
+  it('alphabatesOnly() should call isAlphaFactory with the arguments', () => {
+    vv().alphabatesOnly(msg)
+    expect(isAlphaFactory).toHaveBeenCalledWith(msg)
+  })
+
+  it('alphabatesOnly() should add the function returned by the isAlphaFactory to chain', () => {
+    let spy = jest.fn()
+    isAlphaFactory.mockReturnValue(spy)
+    expect(vv().alphabatesOnly().chain[0]).toBe(spy)
+  })
+
+  it('alphaNumericOnly() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.alphaNumericOnly()).toBe(instance)
+  })
+
+  it('alphaNumericOnly() should call isAlphaNumericFactory with the arguments', () => {
+    vv().alphaNumericOnly(msg)
+    expect(isAlphaNumericFactory).toHaveBeenCalledWith(msg)
+  })
+
+  it('alphaNumericOnly() should add the function returned by the isAlphaNumericFactory to chain', () => {
+    let spy = jest.fn()
+    isAlphaNumericFactory.mockReturnValue(spy)
+    expect(vv().alphaNumericOnly().chain[0]).toBe(spy)
+  })
+
+  it('digitsOnly() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.digitsOnly()).toBe(instance)
+  })
+
+  it('digitsOnly() should call isNumericFactory with the arguments', () => {
+    vv().digitsOnly(msg)
+    expect(isNumericFactory).toHaveBeenCalledWith(msg)
+  })
+
+  it('digitsOnly() should add the function returned by the isNumericFactory to chain', () => {
+    let spy = jest.fn()
+    isNumericFactory.mockReturnValue(spy)
+    expect(vv().digitsOnly().chain[0]).toBe(spy)
+  })
+
+  it('length() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.length()).toBe(instance)
+  })
+
+  it('length() should call isLengthFactory with the arguments', () => {
+    vv().length(5, msg)
+    expect(isLengthFactory).toHaveBeenCalledWith(5, msg)
+  })
+
+  it('length() should add the function returned by the isLengthFactory to chain', () => {
+    let spy = jest.fn()
+    isLengthFactory.mockReturnValue(spy)
+    expect(vv().length(6).chain[0]).toBe(spy)
+  })
+
+  it('decimal() should reurn the invoking vv', () => {
+    let instance = vv()
+    expect(instance.decimal()).toBe(instance)
+  })
+
+  it('decimal() should call isDecimalFactory with the arguments', () => {
+    vv().decimal(msg)
+    expect(isDecimalFactory).toHaveBeenCalledWith(msg)
+  })
+
+  it('decimal() should add the function returned by the isDecimalFactory to chain', () => {
+    let spy = jest.fn()
+    isDecimalFactory.mockReturnValue(spy)
+    expect(vv().decimal().chain[0]).toBe(spy)
   })
 })

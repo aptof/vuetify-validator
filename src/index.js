@@ -1,5 +1,9 @@
 import * as stringFactories from './factories/stringFactories'
-import {requiredFactory} from './factories/required'
+import {
+  requiredFactory
+} from './factories/required'
+import strings from './utils/strings'
+
 class validator {
   constructor() {
     this.chain = []
@@ -38,7 +42,7 @@ class validator {
    * Check the value if entered is an email.
    * @param {string} errorMessage - Custom error message
    */
-  email(errorMessage){
+  email(errorMessage) {
     this.chain.push(stringFactories.emailFactory(errorMessage))
     return this
   }
@@ -47,7 +51,7 @@ class validator {
    * @param {number} length - Minimum length
    * @param {string} errorMessage - Custom error message
    */
-  minLength(length, errorMessage){
+  minLength(length, errorMessage) {
     this.chain.push(stringFactories.minLengthFactory(length, errorMessage))
     return this
   }
@@ -69,13 +73,50 @@ class validator {
     this.chain.push(stringFactories.hasALowerFactory(errorMessage))
     return this
   }
-  
+
   /**
    * Check the value if entered contains atleast one digit
    * @param {stirng} errorMessage - Custom error message
    */
   containsDigit(errorMessage) {
     this.chain.push(stringFactories.hasADigitFactory(errorMessage))
+    return this
+  }
+
+  /**
+   * Check the value if entered contains only alphabets
+   * @param {stirng} errorMessage - Custom error message
+   */
+  alphabatesOnly(errorMessage) {
+    this.chain.push(stringFactories.isAlphaFactory(errorMessage))
+    return this
+  }
+
+  /**
+   * Check the value if entered contains only alphabets and digits
+   * @param {stirng} errorMessage - Custom error message
+   */
+  alphaNumericOnly(errorMessage) {
+    this.chain.push(stringFactories.isAlphaNumericFactory(errorMessage))
+    return this
+  }
+
+  /**
+   * Check the value if entered contains only digits
+   * @param {stirng} errorMessage - Custom error message
+   */
+  digitsOnly(errorMessage) {
+    this.chain.push(stringFactories.isNumericFactory(errorMessage))
+    return this
+  }
+
+  length(length, errorMessage) {
+    this.chain.push(stringFactories.isLengthFactory(length, errorMessage))
+    return this
+  }
+
+  decimal(errorMessage) {
+    this.chain.push(stringFactories.isDecimalFactory(errorMessage))
     return this
   }
 }
@@ -92,3 +133,4 @@ const validationTester = (value, chain) => {
 }
 
 export const vv = () => new validator()
+export const confirm = strings.isSame

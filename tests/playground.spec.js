@@ -1,19 +1,19 @@
 it('sanity', () => {
   expect(true).toBeTrue()
 })
-/*
-it('confirm() should reurn the invoking vv', () => {
+
+/*it('decimal() should reurn the invoking vv', () => {
   let instance = vv()
-  expect(instance.confirm()).toBe(instance)
+  expect(instance.decimal()).toBe(instance)
 })
 
-it('confirm() should call isSameFactory with the arguments', () => {
-  vv().confirm(msg)
-  expect(isSameFactory).toHaveBeenCalledWith(msg)
+it('decimal() should call isDecimalFactory with the arguments', () => {
+  vv().decimal(msg)
+  expect(isDecimalFactory).toHaveBeenCalledWith(msg)
 })
 
-it('confirm() should add the function returned by the isSameFactory to chain', () => {
+it('decimal() should add the function returned by the isDecimalFactory to chain', () => {
   let spy = jest.fn()
-  isSameFactory.mockReturnValue(spy)
-  expect(vv().confirm().chain[0]).toBe(spy)
+  isDecimalFactory.mockReturnValue(spy)
+  expect(vv().decimal().chain[0]).toBe(spy)
 })*/

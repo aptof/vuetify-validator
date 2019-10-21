@@ -56,9 +56,9 @@ export const isNumericFactory = (errorMessage = message.isNumericError()) => {
   }
 }
 
-export const isLengthFactory = (errorMessage = message.isLengthError()) => {
+export const isLengthFactory = (length, errorMessage = message.isLengthError(length)) => {
   return (value) => {
-    return validator.isLength(value) || errorMessage
+    return validator.isLength(value, length) || errorMessage
   }
 }
 

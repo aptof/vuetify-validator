@@ -224,8 +224,8 @@ describe('factories/stringFactories.js', () => {
 
     it('should call isLength of validator with value', () => {
       let spy = jest.spyOn(validator, 'isLength')
-      isLengthFactory()(value)
-      expect(spy).toHaveBeenCalledWith(value)
+      isLengthFactory(5)(value)
+      expect(spy).toHaveBeenCalledWith(value, 5)
     })
 
     it('Returns true if isLength returns true', () => {
@@ -235,8 +235,8 @@ describe('factories/stringFactories.js', () => {
 
     it('Should return error message if isLength returns false', () => {
       jest.spyOn(validator, 'isLength').mockImplementation(() => false)
-      expect(isLengthFactory()()).toBe(message.isLengthError())
-      expect(isLengthFactory(msg)()).toBe(msg)
+      expect(isLengthFactory(5)()).toBe(message.isLengthError(5))
+      expect(isLengthFactory(5, msg)()).toBe(msg)
     })
   })
 
