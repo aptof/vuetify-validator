@@ -1,6 +1,6 @@
 {
   "name": "@aptof/vuetify-validator",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "A validation library for Vuetify",
   "main": "lib/index.js",
   "scripts": {
