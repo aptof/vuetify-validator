@@ -18,17 +18,7 @@ class VuetifyValidator {
       }
     };
   }
-
-  /*string(errorMessage) {
-    this.chain.push(stringFactory(errorMessage))
-    return this
-  }
-
-  length(length, errorMessage) {
-    this.chain.push(lengthFactory(length, errorMessage))
-    return this
-  }*/
-
+  
   /**
    * Check if value is entered
    * @param {string} errorMessage - Custom error message
