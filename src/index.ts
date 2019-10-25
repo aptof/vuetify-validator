@@ -18,7 +18,11 @@ class VuetifyValidator {
       }
     };
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> dev
   /**
    * Check if value is entered
    * @param {string} errorMessage - Custom error message
