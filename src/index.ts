@@ -1,15 +1,15 @@
-import * as stringFactories from './factories/stringFactories';
 import { requiredFactory } from './factories/required';
+import * as stringFactories from './factories/stringFactories';
 import strings from './utils/strings';
 
 class VuetifyValidator {
-  chain: Array<any>
+  public chain: any[];
 
   constructor() {
     this.chain = [];
   }
 
-  get() {
+  public get() {
     return (value: any) => {
       if (!this.chain.length) {
         return true;
@@ -18,12 +18,12 @@ class VuetifyValidator {
       }
     };
   }
-  
+
   /**
    * Check if value is entered
    * @param {string} errorMessage - Custom error message
    */
-  required(errorMessage: string) {
+  public required(errorMessage: string) {
     this.chain.push(requiredFactory(errorMessage));
     return this;
   }
@@ -32,7 +32,7 @@ class VuetifyValidator {
    * Check the value if entered is an email.
    * @param {string} errorMessage - Custom error message
    */
-  email(errorMessage: string) {
+  public email(errorMessage: string) {
     this.chain.push(stringFactories.emailFactory(errorMessage));
     return this;
   }
@@ -41,7 +41,7 @@ class VuetifyValidator {
    * @param {number} length - Minimum length
    * @param {string} errorMessage - Custom error message
    */
-  minLength(length: number, errorMessage: string) {
+  public minLength(length: number, errorMessage: string) {
     this.chain.push(stringFactories.minLengthFactory(length, errorMessage));
     return this;
   }
@@ -50,7 +50,7 @@ class VuetifyValidator {
    * Check the value if entered contains atleast one uppercase
    * @param {stirng} errorMessage - Custom error message
    */
-  containsUpper(errorMessage: string) {
+  public containsUpper(errorMessage: string) {
     this.chain.push(stringFactories.hasAnUpperFactory(errorMessage));
     return this;
   }
@@ -59,7 +59,7 @@ class VuetifyValidator {
    * Check the value if entered contains atleast one lowercase
    * @param {stirng} errorMessage - Custom error message
    */
-  containsLower(errorMessage: string) {
+  public containsLower(errorMessage: string) {
     this.chain.push(stringFactories.hasALowerFactory(errorMessage));
     return this;
   }
@@ -68,7 +68,7 @@ class VuetifyValidator {
    * Check the value if entered contains atleast one digit
    * @param {stirng} errorMessage - Custom error message
    */
-  containsDigit(errorMessage: string) {
+  public containsDigit(errorMessage: string) {
     this.chain.push(stringFactories.hasADigitFactory(errorMessage));
     return this;
   }
@@ -77,7 +77,7 @@ class VuetifyValidator {
    * Check the value if entered contains only alphabets
    * @param {stirng} errorMessage - Custom error message
    */
-  alphabatesOnly(errorMessage: string) {
+  public alphabatesOnly(errorMessage: string) {
     this.chain.push(stringFactories.isAlphaFactory(errorMessage));
     return this;
   }
@@ -86,7 +86,7 @@ class VuetifyValidator {
    * Check the value if entered contains only alphabets and digits
    * @param {stirng} errorMessage - Custom error message
    */
-  alphaNumericOnly(errorMessage: string) {
+  public alphaNumericOnly(errorMessage: string) {
     this.chain.push(stringFactories.isAlphaNumericFactory(errorMessage));
     return this;
   }
@@ -95,26 +95,26 @@ class VuetifyValidator {
    * Check the value if entered contains only digits
    * @param {stirng} errorMessage - Custom error message
    */
-  digitsOnly(errorMessage: string) {
+  public digitsOnly(errorMessage: string) {
     this.chain.push(stringFactories.isNumericFactory(errorMessage));
     return this;
   }
 
-  length(length: number, errorMessage: string) {
+  public length(length: number, errorMessage: string) {
     this.chain.push(stringFactories.isLengthFactory(length, errorMessage));
     return this;
   }
 
-  decimal(errorMessage: string) {
+  public decimal(errorMessage: string) {
     this.chain.push(stringFactories.isDecimalFactory(errorMessage));
     return this;
   }
 }
 
-const validationTester = (value: any, chain: Array<any>) => {
+const validationTester = (value: any, chain: any[]) => {
   let error = true;
-  for (let i = 0; i < chain.length; i++) {
-    error = chain[i](value);
+  for (const validator of chain) {
+    error = validator(value);
     if (error !== true) {
       break;
     }
