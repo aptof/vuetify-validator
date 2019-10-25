@@ -1,4 +1,5 @@
 import validator from '../../src/utils/strings'
+import 'jest-extended'
 
 describe('utils/strings.js', () => {
   it.each([

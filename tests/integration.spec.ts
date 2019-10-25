@@ -2,6 +2,7 @@ import {
   vv
 } from '../lib/index'
 import * as message from '../src/utils/errorMessage'
+import 'jest-extended'
 
 describe('Integration: The library', () => {
   it('should return true for valid email', () => {

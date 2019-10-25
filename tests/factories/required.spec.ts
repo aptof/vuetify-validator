@@ -4,6 +4,7 @@ import {
 import {
   requiredError
 } from '../../src/utils/errorMessage'
+import 'jest-extended'
 
 describe('requied.js', () => {
   it('requiredFactory is a function', () => {
