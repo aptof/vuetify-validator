@@ -122,14 +122,5 @@ const validationTester = (value: any, chain: Array<any>) => {
   return error;
 };
 
-<<<<<<< HEAD:src/index.js
-export const vv = () => new validator()
-export const confirm = strings.isSame
-
-export default function () {
-  return new validator()
-}
-=======
 export const vv = (): VuetifyValidator => new VuetifyValidator();
 export const confirm = strings.isSame;
->>>>>>> dev:src/index.ts
