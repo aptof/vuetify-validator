@@ -19,16 +19,6 @@ class validator {
     }
   }
 
-  /*string(errorMessage) {
-    this.chain.push(stringFactory(errorMessage))
-    return this
-  }
-
-  length(length, errorMessage) {
-    this.chain.push(lengthFactory(length, errorMessage))
-    return this
-  }*/
-
   /**
    * Check if value is entered
    * @param {string} errorMessage - Custom error message
@@ -134,3 +124,7 @@ const validationTester = (value, chain) => {
 
 export const vv = () => new validator()
 export const confirm = strings.isSame
+
+export default function () {
+  return new validator()
+}

@@ -1,8 +1,8 @@
 {
   "name": "@aptof/vuetify-validator",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "description": "A validation library for Vuetify",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest --watch --no-cache",
     "build": "babel src -d lib"
