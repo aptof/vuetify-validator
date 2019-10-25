@@ -1,3 +1,5 @@
+import 'jest-extended'
+
 it('sanity', () => {
   expect(true).toBeTrue()
 })

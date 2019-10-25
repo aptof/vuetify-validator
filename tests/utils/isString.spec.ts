@@ -1,6 +1,7 @@
-import isString from '../../src/utils/isString'
+import isString from '../../src/utils/isString';
+import 'jest-extended'
 
-describe('assertString.js', () => {
+describe('isString.js', () => {
   it.each([
     ['4'],
     ['54'],
@@ -20,7 +21,7 @@ describe('assertString.js', () => {
     [{
       any: 'any'
     }]
-  ])('Returns false if arg is %p', (value) => {
+  ])('Returns false if arg is %p', (value:any) => {
     expect(isString(value)).toBeFalse()
   })
 })

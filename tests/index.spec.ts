@@ -16,6 +16,8 @@ jest.mock('../src/factories/required', () => ({
   __esModule: true,
   requiredFactory: jest.fn()
 }))
+import 'jest-extended'
+import 'jest-chain'
 
 import {
   vv,
